@@ -1,0 +1,33 @@
+USER STORIES -----------------
+1. as a user I want to know what spices I have
+2. as a user I want to know how much of each spice I have
+3. as a user I want to be able to add spices to my cappinet
+4. as a user I want to delete spices from my capinet
+5. as a user I want to be able to input the ingredients of a
+   recipe and am told what spices I need to buy
+
+-$$$ as a user I want to know what recipes can use a spice/spices
+-$$$ multiple users/cappinets
+
+
+OBJECT LEVEL DESIGN -------------------
+
+class Spice
+-name
+-quantity(percentage full)
+-date updated
+-date added
+
+class Cappinet
+-spice objects
+
+class Recipe
+-list of spices + quantity
+$$website
+
+class UI
+-welcome prompt
+-user prompt
+
+class Program
+-run
