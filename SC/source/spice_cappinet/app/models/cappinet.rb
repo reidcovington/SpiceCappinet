@@ -31,9 +31,6 @@ class Cappinet < ActiveRecord::Base
     spice.save
   end
 
-  def
-
-  end
 end
 
 class Spice < ActiveRecord::Base
