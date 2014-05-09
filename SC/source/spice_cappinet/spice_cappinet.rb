@@ -13,8 +13,8 @@ class Cappinet < ActiveRecord::Base
     query = Spice.all.select { |spice| spice.name == spice_name }
 
     if query.map { |spice| spice.name }.include?(spice_name)
-      spice = Spice.where(name: spice_name)
-      spice.quantity += 100
+      spice = Spice.where(name: spice_name).first
+      spice[:quantity] += 100
       spice.save
     else
       Spice.create(name: spice_name, cappinet_id: 1)
@@ -22,13 +22,17 @@ class Cappinet < ActiveRecord::Base
   end
 
   def self.remove(spice_name)
-    spice = Spice.where(name: spice_name)
-    destroy(spice)
+    Spice.where(name: spice_name).first.destroy
   end
 
   def self.update_amount(spice_name, amount_used)
+    spice = Spice.where(name: spice_name).first
     spice.quantity -= amount_used
     spice.save
+  end
+
+  def
+
   end
 end
 
@@ -46,20 +50,21 @@ end
 
 
 Cappinet.add('Cumin')
+spice = Spice.where(name: 'Cumin').first
+
 assert(Cappinet.where(name: 'Cumin'), 'Cumin')
 Cappinet.add('Cumin')
 assert(Cappinet.where(quantity: 200), 200)
 
-
-
 Cappinet.add('Tumeric')
-Cappinet.show_cabinet
 
 Cappinet.remove('Cumin')
 assert(Spice.all.include?('Cumin'), false)
 
 Cappinet.update_amount('Tumeric', 10)
 assert(Spice.where(name: 'Tumeric'), 90)
+
+Cappinet.show_cabinet
 
 
 puts
