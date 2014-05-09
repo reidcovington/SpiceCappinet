@@ -5,6 +5,7 @@ require_relative '../../config/application'
 class CreateSpice < ActiveRecord::Migration
   def change
     create_table :spices do |s|
+      s.belongs_to :cappinet
       s.string :name
       s.integer :quantity, default: 100
       s.timestamps
