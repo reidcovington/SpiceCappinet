@@ -4,7 +4,7 @@ require_relative '../../config/application'
 
 class CreateCappinet < ActiveRecord::Migration
   def change
-    create_table :cappinet do |c|
+    create_table :cappinets do |c|
       c.string :name
       c.timestamps
     end
