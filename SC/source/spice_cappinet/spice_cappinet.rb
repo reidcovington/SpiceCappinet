@@ -72,37 +72,39 @@ class UI
     puts "\t 6. Type QUANTITY to see a spice's quantity"
     puts "\t 7. Type RECIPE to check if you have the spices for a recipe"
     puts "\t 8. Type QUIT to leave"
-    response = gets.chomp
+    response = gets.chomp.upcase
     case response
     when 'LIST'
       puts "Here are your spices:"
       Cappinet.show_cabinet
     when 'ADD'
       puts "What spice would you like to add?"
-      Cappinet.add(gets.chomp)
+      Cappinet.add(gets.chomp.downcase)
     when 'REMOVE'
       Cappinet.show_cabinet
       puts "What spice would you like to remove?"
-      Cappinet.remove(gets.chomp)
+      Cappinet.remove(gets.chomp.downcase)
     when 'UPDATE'
       Cappinet.show_cabinet
       puts "What spice quantity would you like to update?"
-      spice_name = gets.chomp
+      spice_name = gets.chomp.downcase
       puts "How much #{spice_name} did you use?"
-      amount_used = gets.chomp
+      amount_used = gets.chomp.downcase
       Cappinet.update_amount(spice_name, amount_used)
     when 'CHECK'
       puts "What spice would you like to check?"
-      Cappinet.included?(gets.chomp)
+      Cappinet.included?(gets.chomp.downcase)
     when 'QUANTITY'
       puts "What spice's quantity would you like to check?"
-      Cappinet.give_quantity(gets.chomp)
+      Cappinet.give_quantity(gets.chomp.downcase)
     when 'RECIPE'
-      puts "What recipe would you like to check?"
+      puts "Let's if you have sufficient amount of a spice for your recipe..."
       Cappinet.recipe
     when 'QUIT'
-      puts "See ya! Wouldn't want to bee ya!"
+      puts "See ya! Wouldn't want to be ya!"
       exit
+    else
+      puts "That's no valid command bruh"
     end
     "Peace out"
   end

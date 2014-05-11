@@ -11,7 +11,7 @@ class Cappinet < ActiveRecord::Base
 
   def self.included?(spice_name)
     if Spice.all.select { |spice| spice.name == spice_name } != []
-      puts "Your in luck! You have #{spice_name}"
+      puts "You're in luck! You have #{spice_name}"
       return true
     else
       false
@@ -54,15 +54,23 @@ class Cappinet < ActiveRecord::Base
   def self.recipe
     # raise "Enter a hash bruh" unless ingredients.class == Hash
     puts "What ingredient?"
-    item = gets.chomp
-    puts "What quantity"
+    item = gets.chomp.downcase
+    puts "What quantity?"
     quantity = gets.chomp
     ingredients_hash = {item => quantity}
-    ingredients_hash.each do |item, quantity|
-      if self.included?(item)==true && self.give_quantity(item) >= quantity
+    ingredients_hash.each do |item, amt|
+      if self.included?(item) && Spice.all.select {|spice| spice.name==item}.first.quantity >= amt.to_i
         puts "You're all set with #{item}!"
+        spice = Spice.where(name: item).first
+        spice.quantity -= amt.to_i
+        spice.save
+        puts "You now have #{spice.quantity} left"
+      elsif self.included?(item)==false
+        puts "Bruh, you don't have any #{item}"        
       else
-        puts "Go get some more #{item} bruh"
+        puts Spice.all.select {|spice| spice.name == item}.first.quantity
+        amt_needed = amt.to_i - Spice.all.select {|spice| spice.name == item}.first.quantity
+        puts "..sorry, you need #{amt_needed} more #{item} bruh"
       end
     end
     "Enjoy bruh"
