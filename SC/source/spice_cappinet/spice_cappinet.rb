@@ -1,4 +1,5 @@
 require_relative 'config/application'
+require_relative 'app/models/RecipeGetter.rb'
 
 # require 'active_record'
 
@@ -71,7 +72,8 @@ class UI
     puts "\t 5. Type CHECK to see if you have a spice"
     puts "\t 6. Type QUANTITY to see a spice's quantity"
     puts "\t 7. Type RECIPE to check if you have the spices for a recipe"
-    puts "\t 8. Type QUIT to leave"
+    puts "\t 8. Type SEARCH to find a recipe based on meal type and spices"
+    puts "\t 9. Type QUIT to leave"
     response = gets.chomp.upcase
     case response
     when 'LIST'
@@ -100,6 +102,27 @@ class UI
     when 'RECIPE'
       puts "Let's if you have sufficient amount of a spice for your recipe..."
       Cappinet.recipe
+    
+    when 'SEARCH'
+      puts "What would you like?"
+      puts "Enter B for Breakfast, L for Lunch, D for Dinner or A for Any meal"
+
+      meal = gets.chomp
+
+      unless meal == "B" || meal == "L" || meal == "D" || meal == "A"
+        puts "Please enter a valid meal type"
+      end
+
+      puts "OK, so which of your spice(s) would you like to use?"
+      puts "If entering multiple spices please separate them with a space"
+
+      spices = gets.chomp
+
+      query = RecipeGetter.query_builder(meal, spices)
+      recipe_list = RecipeGetter.pull_recipe(query)
+
+      RecipeGetter.list_recipe_names(recipe_list)
+
     when 'QUIT'
       puts "See ya! Wouldn't want to be ya!"
       exit
