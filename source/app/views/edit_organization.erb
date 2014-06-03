@@ -1,0 +1,23 @@
+<div id="content">
+  <div id="edit-details">
+  <h1>Edit Organization</h1>
+
+  <form id="edit-organization" method="post" action="/organization/<%= @organization.id %>/edit">
+    <label class="label">Name</label>
+    <input id="organization_name" type="text" name="organization_name" placeholder="What is the name of your organization?" required>
+    <br>
+
+    <label class="label">Description</label>
+    <input id="organization_description" type="text" name="organization_description" placeholder="Description..." required>
+    <br>
+
+
+    <label class="label">Students</label>
+    <input id="organization_students" type="text" name="organization_students" placeholder="Enter students emails seperated by comma: reid@shopcube.com,reid2@shopcube.com" required>
+    <br>
+
+    <div class="submit"><input id="log-organization" type="submit" value="Log Organization!"></div>
+  </form>
+  <a id="delete" href='/organization/<%= @organization.id %>/delete'>Delete Organization</a>
+  </div>
+</div>

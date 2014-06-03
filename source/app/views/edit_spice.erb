@@ -1,0 +1,21 @@
+<div id="content">
+  <h1>Edit Spice</h1>
+
+  <form id="edit-spice" method="post" action="/cappinets/<%= @cappinet.id %>/spices/ <%= @spice.id %>/edit">
+    <label class="label" for="email">Destination</label>
+    <input type="text" name="destination_name" placeholder="Where are you going?">
+    <br>
+
+    <label class="label" for="name">Duration</label>
+    <input type="text" name="trip_duration" placeholder="How long are you going for?">
+    <br>
+
+
+    <label class="label" for="password">Completed</label>
+    <input type="text" name="trip_completed" placeholder="true or false?">
+    <br>
+
+    <div class="submit"><input type="submit" value="Edit spice!"></div>
+  </form>
+  <a id="delete" href='/trips/<%= @spice.id %>/delete'>Delete Spice</a>
+</div>

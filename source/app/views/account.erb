@@ -1,0 +1,10 @@
+<div id="content">
+  <h1>Account</h1>
+  <h3> Trips </h3>
+  <% @user.trips.each do |trip| %>
+  <%= Destination.find_by_id(trip.destination_id).name %>
+  <%= trip.duration %>
+  <%= trip.completed %>
+  <a href="/trips/<%= trip.id %>/edit">Edit</a>
+  <% end %>
+</div>

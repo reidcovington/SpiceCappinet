@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    normalize.css removes cross-browser differences in defaults, e.g.,
+    differences in how form elements appear between Firefox and IE
+    See: http://necolas.github.com/normalize.css/
+  -->
+  <link rel="stylesheet" href="/css/normalize.css">
+  <!--
+    application.css is where you put your styles
+  -->
+  <link rel="stylesheet" href="/css/application.css">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="/js/application.js"></script>
+
+  <title></title>
+</head>
+<body>
+  <div id="container">
+    <div id="nav">
+        <a href="/"> Spice Cappinet </a>
+        <% if session[:user_id] %>
+            <a href="/users/<%= session[:user_id] %>">Account</a>
+            <a id="new-capp" href="/cappinets/new">New Cappinet</a>
+            <a id="sign-out" href="/session/end">Logout</a>
+        <% else %>
+            <a href="/sessions/new">Login</a>
+            <a id="new-student" href="/users/new">Signup</a>
+        <% end %>
+    </div>
+    <%= yield %>
+    <div id="footer">
+        <p>Copyright © 2014 - Reid Killington</p>
+    </div>
+</div>
+</body>
+</html>

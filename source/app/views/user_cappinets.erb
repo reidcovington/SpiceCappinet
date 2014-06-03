@@ -1,0 +1,11 @@
+<div id="content">
+  <div id="cappinets">
+  <h1>Your Cappinets</h1>
+  <br>
+  <ul>
+    <% @cappinets.each do |cappinet| %>
+      <li><a href="/users/<%= @user.id %>/cappinets/<%= cappinet.id %>"><%= cappinet.name %></li>
+    <% end %>
+  </ul>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<div id="content">
+  <div id="cappinet">
+  <h1><%= @cappinet.name %></h1>
+  <p><%= @cappinet.description %></p>
+  <form id="new-spice" method="post" action="/cappinets/<%= @cappinet.id %>/spices/new">
+      <label class="label">Add Spice</label>
+      <select name="new_spice">
+        <option value="selector">Select Spice</option>
+        <option value="Basil">Basil</option>
+        <option value="Bay Leaf">Bay Leaf</option>
+        <option value="Cilantro">Cilantro</option>
+        <option value="Coriander">Coriander</option>
+        <option value="Cumin">Cumin</option>
+        <option value="Curry Powder">Curry Powder</option>
+        <option value="Dill">Dill</option>
+        <option value="Garlic">Garlic</option>
+        <option value="Ginger">Ginger</option>
+        <option value="Lavender">Lavender</option>
+        <option value="Mustard">Mustard</option>
+        <option value="Nutmeg">Nutmeg</option>
+        <option value="Oregano">Oregano</option>
+        <option value="Paprika">Paprika</option>
+        <option value="Parsley">Parsley</option>
+        <option value="Pepper">Pepper</option>
+        <option value="Peppercorns">Peppercorns</option>
+        <option value="Peppermint">Peppermint</option>
+        <option value="Red Pepper Flakes">Red Pepper Flakes</option>
+        <option value="Rosemary">Rosemary</option>
+        <option value="Saffron">Saffron</option>
+        <option value="Sage">Sage</option>
+        <option value="Saigon">Saigon</option>
+        <option value="Salt">Salt</option>
+        <option value="Tarragon">Tarragon</option>
+        <option value="Thyme">Thyme</option>
+        <option value="Turmeric">Turmeric</option>
+        <option value="Vanilla">Vanilla</option>
+      </select>
+      <label class="label">Amount in grams: </label>
+      <input id="spice_amount" type="text" name="spice_amount" placeholder="e.g., 42" required>
+      <input id="add-spice" type="submit" value="Add Spice!"> <br><br>
+  </form>
+  <table>
+      <tr>
+        <td style="border-bottom: 1px solid black; width: 100px">Spice</td>
+        <td style="border-bottom: 1px solid black; width: 100px">Amount</td>
+      </tr>
+    <% @spices.each do |spice| %>
+      <tr>
+        <td style="border: 1px solid black; width: 100px"><%= spice.name %></td>
+        <td style="border: 1px solid black; width: 100px"><%= spice.amount %>g</td>
+        <td style="border: 1px solid black; width: 100px"><a href="/cappinets/<%= @cappinet.id %>/spices/ <%= spice.id %>/edit">Edit</a></td>
+        <td style="border: 1px solid black; width: 100px"><a href="/cappinets/<%= @cappinet.id %>/spices/<%= spice.id %>/delete">Remove</a></td>
+      </tr>
+    <% end %>
+  </table>
+  </div>
+</div>
